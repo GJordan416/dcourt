@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opinions - USDC District of Columbia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .navbar .search-bar {
+            flex-grow: 1;
+            display: flex;
+            margin-left: 20px;
+        }
+
+        .navbar input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Information Box */
+        .info-box {
+            background-color: #f4f4f4;
+            padding: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Table Section */
+        .table-container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+
+        th:hover {
+            background-color: #e0e0e0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="USDC Logo">
+            <h1>USDC District of Columbia</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Search opinions by keyword or number...">
+        </div>
+    </div>
+
+    <div class="info-box">
+        - Sort forward/reverse by clicking on '<span class="highlight">Date Filed</span>' or '<span class="highlight">Case</span>'<br>
+        - Narrow results by searching for a keyword or number<br>
+        - For two or more results use '<span class="highlight">|</span>' e.g. '<span class="highlight">NEAL|ALPINE</span>'<br>
+        - Refresh page to restore original results
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Date Filed</th>
+                    <th onclick="sortTable(1)">Case</th>
+                    <th>Opinion</th>
+                </tr>
+            </thead>
+            <tbody id="opinionTable">
+                <tr>
+                    <td>2024-01-05</td>
+                    <td>Case 12345</td>
+                    <td><a href="#">Opinion PDF</a></td>
+                </tr>
+                <tr>
+                    <td>2024-02-10</td>
+                    <td>Case 67890</td>
+                    <td><a href="#">Opinion PDF</a></td>
+                </tr>
+                <!-- Additional rows go here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript to sort the table
+        function sortTable(columnIndex) {
+            const table = document.getElementById("opinionTable");
+            const rows = Array.from(table.rows);
+            const isReverse = table.dataset.sortOrder === "reverse";
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.cells[columnIndex].innerText;
+                const cellB = rowB.cells[columnIndex].innerText;
+                return isReverse ? cellB.localeCompare(cellA) : cellA.localeCompare(cellB);
+            });
+
+            rows.forEach(row => table.appendChild(row));
+            table.dataset.sortOrder = isReverse ? "" : "reverse";
+        }
+    </script>
+</body>
+</html>
