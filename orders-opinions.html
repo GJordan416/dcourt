@@ -189,31 +189,28 @@
     </div>
 
     <script>
-        // JavaScript to sort the table
-        function sortTable(columnIndex) {
+        // Filter the table based on search input
+        function filterTable() {
+            const input = document.getElementById("searchBar").value.toUpperCase();
             const table = document.getElementById("opinionTable");
-            const rows = Array.from(table.rows);
-            const isReverse = table.dataset.sortOrder === "reverse";
+            const rows = table.getElementsByTagName("tr");
 
-            rows.sort((rowA, rowB) => {
-                const cellA = rowA.cells[columnIndex].innerText;
-                const cellB = rowB.cells[columnIndex].innerText;
-                return isReverse ? cellB.localeCompare(cellA) : cellA.localeCompare(cellB);
-            });
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                let match = false;
 
-            rows.forEach(row => table.appendChild(row));
-            table.dataset.sortOrder = isReverse ? "" : "reverse";
-        }
-         // Position tooltip dynamically
-        const tooltips = document.querySelectorAll('.preview-tooltip');
-        document.addEventListener('mousemove', (event) => {
-            tooltips.forEach(tooltip => {
-                if (tooltip.parentElement.parentElement.matches(':hover')) {
-                    tooltip.style.left = `${event.pageX + 10}px`;
-                    tooltip.style.top = `${event.pageY + 10}px`;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j]) {
+                        if (cells[j].innerText.toUpperCase().indexOf(input) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
                 }
-            });
-        });
+
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
     </script>
 </body>
 </html>
