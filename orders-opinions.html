@@ -82,6 +82,24 @@
             font-weight: bold;
             color: #0056b3;
         }
+         /* Preview Tooltip */
+        .preview-tooltip {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            z-index: 1000;
+            max-width: 400px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        tr:hover .preview-tooltip {
+            display: block;
+        }
+    </style>
     </style>
 </head>
 <body>
