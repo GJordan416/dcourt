@@ -203,6 +203,16 @@
             rows.forEach(row => table.appendChild(row));
             table.dataset.sortOrder = isReverse ? "" : "reverse";
         }
+         // Position tooltip dynamically
+        const tooltips = document.querySelectorAll('.preview-tooltip');
+        document.addEventListener('mousemove', (event) => {
+            tooltips.forEach(tooltip => {
+                if (tooltip.parentElement.parentElement.matches(':hover')) {
+                    tooltip.style.left = `${event.pageX + 10}px`;
+                    tooltip.style.top = `${event.pageY + 10}px`;
+                }
+            });
+        });
     </script>
 </body>
 </html>
