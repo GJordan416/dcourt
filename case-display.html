@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>District Court Case Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #004085;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #004085;
+            color: white;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+    <script>
+        function searchCases() {
+            const input = document.getElementById('caseSearch').value.toLowerCase();
+            const table = document.getElementById('caseTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        match = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>District Court Case Display</h1>
+    </header>
+    <main>
+        <div class="search-bar">
+            <label for="caseSearch"><strong>Search Cases:</strong></label>
+            <input type="text" id="caseSearch" onkeyup="searchCases()" placeholder="Search by case number, title, or party name">
+        </div>
+        <table id="caseTable">
+            <thead>
+                <tr>
+                    <th>Case Number</th>
+                    <th>Case Title</th>
+                    <th>Plaintiff</th>
+                    <th>Defendant</th>
+                    <th>Status</th>
+                  <th>Case File</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr>
+                    <td>2024-CR-100001</td>
+                    <td>United States v. Kriste Robinson</td>
+                    <td>United States</td>
+                    <td>Kristie Robinson</td>
+                    <td>Dismissed</td>
+                  <td><a href="https://gjordan416.github.io/dcourt/2024-CR-100001.html" target="_blank"></a>Case File</td>
+                </tr>
+                <tr>
+                    <td>2024-CR-0078</td>
+                    <td>United States v. Jude Bellingham</td>
+                    <td>United States</td>
+                    <td>Jude Bellingham</td>
+                    <td>CLOSED</td>
+                  <td><a href="https://gjordan416.github.io/dcourt/2024CR0078.html" target="_blank"></a>Case File</td>
+                </tr>
+                <tr>
+                    <td>3:24-CR-0044</td>
+                    <td>United States v. William Kennedy</td>
+                    <td>United States</td>
+                    <td>William Kennedy</td>
+                    <td>Trial Stage</td>
+                  <td><a href="https://gjordan416.github.io/dcourt/3-24CR0044.html" target="_blank"></a>Case File</td>
+                </tr>
+               <tr>
+                    <td>3:24-CR-0042</td>
+                    <td>United States v. Edward Barness</td>
+                    <td>United States</td>
+                    <td>Edward barness</td>
+                    <td>Sealed</td>
+                  <td><a href="https://gjordan416.github.io/dcourt/3-24CR0042.html" target="_blank"></a>Case File</td>
+                </tr>
+                <tr>
+                    <td>3:24-CR-0043</td>
+                    <td>United States v. Edd</td>
+                    <td>United States</td>
+                    <td>Edd</td>
+                    <td>Dismissed</td>
+                  <td><a href="https://gjordan416.github.io/dcourt/3-24CR0043.html" target="_blank"></a>Case File</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        &copy; 2024 United States District Court. All Rights Reserved.
+    </footer>
+</body>
+</html>
