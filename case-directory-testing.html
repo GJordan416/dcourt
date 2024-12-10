@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judicial Case Directory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #004085;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-container, .search-container {
+            margin-bottom: 20px;
+        }
+        input, select, button, textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #004085;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        .actions button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .actions .edit {
+            background-color: #ffc107;
+            color: white;
+        }
+        .actions .delete {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Judicial Case Directory</h1>
+    </header>
+    <main>
+        <div class="search-container">
+            <h2>Search Cases</h2>
+            <input type="text" id="searchInput" placeholder="Search by Case ID, Title, or Status" onkeyup="searchCases()">
+        </div>
+        <div class="form-container">
+            <h2>Add / Update Case</h2>
+            <form id="caseForm" onsubmit="addCase(event)">
+                <input type="text" id="caseID" placeholder="Case ID" required>
+                <input type="text" id="caseTitle" placeholder="Case Title" required>
+                <input type="text" id="partiesInvolved" placeholder="Parties Involved" required>
+                <input type="date" id="hearingDate" required>
+                <select id="status" required>
+                    <option value="">Select Status</option>
+                    <option value="Open">Open</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Pending">Pending</option>
+                </select>
+                <textarea id="description" placeholder="Case Description" rows="3"></textarea>
+                <button type="submit">Add / Update Case</button>
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>Case Title</th>
+                    <th>Parties Involved</th>
+                    <th>Hearing Date</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="caseTableBody">
+                <!-- Case entries will appear here -->
+            </tbody>
+        </table>
+    </main>
+    <script>
+        let cases = JSON.parse(localStorage.getItem('judicialCases')) || [];
+
+        function addCase(event) {
+            event.preventDefault();
+
+            const caseID = document.getElementById('caseID').value.trim();
+            const caseTitle = document.getElementById('caseTitle').value.trim();
+            const partiesInvolved = document.getElementById('partiesInvolved').value.trim();
+            const hearingDate = document.getElementById('hearingDate').value;
+            const status = document.getElementById('status').value;
+            const description = document.getElementById('description').value.trim();
+
+            const existingIndex = cases.findIndex(c => c.caseID === caseID);
+
+            const caseData = { caseID, caseTitle, partiesInvolved, hearingDate, status, description };
+
+            if (existingIndex !== -1) {
+                cases[existingIndex] = caseData; // Update existing case
+            } else {
+                cases.push(caseData); // Add new case
+            }
+
+            localStorage.setItem('judicialCases', JSON.stringify(cases));
+            document.getElementById('caseForm').reset();
+            displayCases();
+        }
+
+        function displayCases() {
+            const tbody = document.getElementById('caseTableBody');
+            tbody.innerHTML = '';
+            cases.forEach((c, index) => {
+                const row = `<tr>
+                    <td>${c.caseID}</td>
+                    <td>${c.caseTitle}</td>
+                    <td>${c.partiesInvolved}</td>
+                    <td>${c.hearingDate}</td>
+                    <td>${c.status}</td>
+                    <td>${c.description}</td>
+                    <td class="actions">
+                        <button class="edit" onclick="editCase(${index})">Edit</button>
+                        <button class="delete" onclick="deleteCase(${index})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function searchCases() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filteredCases = cases.filter(c =>
+                c.caseID.toLowerCase().includes(query) ||
+                c.caseTitle.toLowerCase().includes(query) ||
+                c.status.toLowerCase().includes(query)
+            );
+
+            const tbody = document.getElementById('caseTableBody');
+            tbody.innerHTML = '';
+            filteredCases.forEach((c, index) => {
+                const row = `<tr>
+                    <td>${c.caseID}</td>
+                    <td>${c.caseTitle}</td>
+                    <td>${c.partiesInvolved}</td>
+                    <td>${c.hearingDate}</td>
+                    <td>${c.status}</td>
+                    <td>${c.description}</td>
+                    <td class="actions">
+                        <button class="edit" onclick="editCase(${index})">Edit</button>
+                        <button class="delete" onclick="deleteCase(${index})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function editCase(index) {
+            const caseData = cases[index];
+            document.getElementById('caseID').value = caseData.caseID;
+            document.getElementById('caseTitle').value = caseData.caseTitle;
+            document.getElementById('partiesInvolved').value = caseData.partiesInvolved;
+            document.getElementById('hearingDate').value = caseData.hearingDate;
+            document.getElementById('status').value = caseData.status;
+            document.getElementById('description').value = caseData.description;
+        }
+
+        function deleteCase(index) {
+            if (confirm('Are you sure you want to delete this case?')) {
+                cases.splice(index, 1);
+                localStorage.setItem('judicialCases', JSON.stringify(cases));
+                displayCases();
+            }
+        }
+
+        // Load cases on page load
+        window.onload = displayCases;
+    </script>
+</body>
+</html>
