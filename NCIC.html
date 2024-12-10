@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCIC Roleplay System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        #login-container, #main-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input, button, select, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .actions button {
+            padding: 5px 10px;
+            margin: 0 5px;
+        }
+    </style>
+    <script>
+        let users = [{ username: "officer1", password: "1234", role: "Officer" }, 
+                     { username: "admin1", password: "admin", role: "Admin" }];
+        let records = [];
+        let vehicles = [];
+        let loggedInUser = null;
+
+        function login(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                loggedInUser = user;
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('main-container').style.display = 'block';
+                document.getElementById('welcome-message').textContent = `Welcome, ${user.role}!`;
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        function addRecord(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const dob = document.getElementById('dob').value;
+            const crimes = document.getElementById('crimes').value;
+            const warrants = document.getElementById('warrants').value;
+
+            records.push({ name, dob, crimes, warrants });
+            document.getElementById('recordForm').reset();
+            displayRecords();
+        }
+
+        function addVehicle(event) {
+            event.preventDefault();
+            const licensePlate = document.getElementById('licensePlate').value;
+            const owner = document.getElementById('owner').value;
+            const model = document.getElementById('model').value;
+            const status = document.getElementById('status').value;
+
+            vehicles.push({ licensePlate, owner, model, status });
+            document.getElementById('vehicleForm').reset();
+            displayVehicles();
+        }
+
+        function displayRecords() {
+            const tbody = document.getElementById('recordTableBody');
+            tbody.innerHTML = '';
+            records.forEach((record, index) => {
+                const row = `<tr>
+                    <td>${record.name}</td>
+                    <td>${record.dob}</td>
+                    <td>${record.crimes}</td>
+                    <td>${record.warrants}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function displayVehicles() {
+            const tbody = document.getElementById('vehicleTableBody');
+            tbody.innerHTML = '';
+            vehicles.forEach((vehicle, index) => {
+                const row = `<tr>
+                    <td>${vehicle.licensePlate}</td>
+                    <td>${vehicle.owner}</td>
+                    <td>${vehicle.model}</td>
+                    <td>${vehicle.status}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>NCIC Roleplay System</h1>
+    </header>
+    <div id="login-container">
+        <h2>Login</h2>
+        <form onsubmit="login(event)">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <div id="main-container" style="display: none;">
+        <h2 id="welcome-message"></h2>
+        <div>
+            <h3>Criminal Records</h3>
+            <form id="recordForm" onsubmit="addRecord(event)">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="date" id="dob" placeholder="Date of Birth" required>
+                <textarea id="crimes" placeholder="Crimes" required></textarea>
+                <textarea id="warrants" placeholder="Warrants"></textarea>
+                <button type="submit">Add Record</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        <th>Crimes</th>
+                        <th>Warrants</th>
+                    </tr>
+                </thead>
+                <tbody id="recordTableBody"></tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Vehicle Records</h3>
+            <form id="vehicleForm" onsubmit="addVehicle(event)">
+                <input type="text" id="licensePlate" placeholder="License Plate" required>
+                <input type="text" id="owner" placeholder="Owner" required>
+                <input type="text" id="model" placeholder="Vehicle Model" required>
+                <input type="text" id="status" placeholder="Status" required>
+                <button type="submit">Add Vehicle</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>License Plate</th>
+                        <th>Owner</th>
+                        <th>Model</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="vehicleTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
