@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+ 
+<html> 
+<head> 
+ 
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]"> 
+   <title>Media - U.S. District Court, Washington, DC</title> 
+   <LINK type="text/css" href="css/ui.all.css" rel="stylesheet">
+	<SCRIPT type="text/javascript" src="js/jquery-1.3.2.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/ui.core.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="js/ui.datepicker.js"></SCRIPT>
+
+	<LINK type="text/css" href="file:///O|/systems/New District Court Internet/Main Directory/datepicker/js/css/demos.css" rel="stylesheet">
+	<SCRIPT type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker();
+		$(".datepicker2").datepicker();
+	});
+	</SCRIPT>
+   
+<style type="text/css"> 
+ 
+body { font-family:Arial, Helvetica, sans-serif; font-size: 1em; padding: 0; margin: 0; background:url(https://ecf.dcd.uscourts.gov/graphics/background2.gif) top right repeat-x; }
+table#nav td { font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; color: #036; font-size:2em; font-weight:bold; }
+table#nav a { text-decoration:none; clear:both; margin-bottom:1px; display:block; }
+table#nav a:hover { text-decoration:underline; }
+.disabled { color:#999; }
+form { }
+.submit-button {
+	/*background:#E0E0E0 url(images/go-button.png) no-repeat 0 0;*/
+	
+	font-size:1em;
+	/*width: 47px;
+	height:20px;
+	border:none; 
+	padding: 0;
+	*/
+	cursor:pointer;
+	margin: 0 0 0 3.8em;
+	
+}
+label { width: 3.8em; display:block; float:left;  }
+input:focus { background-color:#eae3d9;}
+
+@media only screen and (max-device-width: 480px) {
+	input#SDate,
+	input#EDate { width: 60%; height: 4em; }
+	body { font-size: 3em; }
+	label { width: 40$; }
+	
+}
+
+ 
+</style> 
+</head> 
+<body bgcolor="#FFFFFF">  
+
+<img src="https://ecf.dcd.uscourts.gov/graphics/seal_new.png" /><br />
+<form name="CourtSched" method="post" action="/dcourt/cgi-bin/CourtSched.pl" target="_blank" style="margin-top: 5em;margin-left:2em;" ><br /> 
+DYNAMIC COURT CALENDARS (m/d/yy, default=today)<br /><br /> 
+<label>From:</label> <input type="text" name="SDate" id="SDate" class="datepicker" size="10" maxlength="10"><br /><br />
+<label>To:</label>  <input type="text" name="EDate" id="EDate" class="datepicker2" size="10" maxlength="10"> <br /><br />
+<input type="submit" name="Submit" value="Go" class="submit-button"></form> 
+
+  
+ 
+</div> 
+</body> 
+</html> 
+ 
+ 
+ 
+      
+     
+   
+ 
+ 
+ <script id="f5_cspm">(function(){var f5_cspm={f5_p:'PPMCOADGPHPOPALMDHIONGEHMOJEOEOEJDGNGPKKFPJGAPAGINLPIAKOEFOMDKBEKMFBMKDDAACDFCPODJCAPGGCAANFAKJJBMAHOPHPBNFCNFPCDOHNONBBIIOLDPPA',setCharAt:function(str,index,chr){if(index>str.length-1)return str;return str.substr(0,index)+chr+str.substr(index+1);},get_byte:function(str,i){var s=(i/16)|0;i=(i&15);s=s*32;return((str.charCodeAt(i+16+s)-65)<<4)|(str.charCodeAt(i+s)-65);},set_byte:function(str,i,b){var s=(i/16)|0;i=(i&15);s=s*32;str=f5_cspm.setCharAt(str,(i+16+s),String.fromCharCode((b>>4)+65));str=f5_cspm.setCharAt(str,(i+s),String.fromCharCode((b&15)+65));return str;},set_latency:function(str,latency){latency=latency&0xffff;str=f5_cspm.set_byte(str,40,(latency>>8));str=f5_cspm.set_byte(str,41,(latency&0xff));str=f5_cspm.set_byte(str,35,2);return str;},wait_perf_data:function(){try{var wp=window.performance.timing;if(wp.loadEventEnd>0){var res=wp.loadEventEnd-wp.navigationStart;if(res<60001){var cookie_val=f5_cspm.set_latency(f5_cspm.f5_p,res);window.document.cookie='f5avr1978431775aaaaaaaaaaaaaaaa_cspm_='+encodeURIComponent(cookie_val)+';path=/;'+'';}
+return;}}
+catch(err){return;}
+setTimeout(f5_cspm.wait_perf_data,100);return;},go:function(){var chunk=window.document.cookie.split(/\s*;\s*/);for(var i=0;i<chunk.length;++i){var pair=chunk[i].split(/\s*=\s*/);if(pair[0]=='f5_cspm'&&pair[1]=='1234')
+{var d=new Date();d.setTime(d.getTime()-1000);window.document.cookie='f5_cspm=;expires='+d.toUTCString()+';path=/;'+';';setTimeout(f5_cspm.wait_perf_data,100);}}}}
+f5_cspm.go();}());</script>
