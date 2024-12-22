@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judicial Warrant Request Form</title>
+    <link rel="stylesheet" href="/dcourt/judicial-warrant-request/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Judicial Warrant Request Form</h1>
+    </header>
+    <main>
+        <form id="warrantForm">
+            <fieldset>
+                <legend>Warrant Details</legend>
+
+                <label for="warrantType">Warrant Type:</label>
+                <select id="warrantType" name="warrantType" required>
+                    <option value="">--Select a Warrant Type--</option>
+                    <option value="search">Search Warrant</option>
+                    <option value="bench">Bench Warrant</option>
+                    <option value="alias">Alias Warrant</option>
+                    <option value="probation_violation">Probation Violation Warrant</option>
+                    <option value="arrest">Arrest Warrant</option>
+                    <option value="fugitive">Fugitive Warrant</option>
+                    <option value="capias">Capias Warrant</option>
+                    <option value="governor">Governor Warrant</option>
+                </select>
+
+                <label for="dateOfFiling">Date of Filing:</label>
+                <input type="date" id="dateOfFiling" name="dateOfFiling" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Officer Information</legend>
+
+                <label for="officerName">Officer Name:</label>
+                <input type="text" id="officerName" name="officerName" placeholder="Officer's Full Name" required>
+
+                <label for="officerPosition">Position:</label>
+                <input type="text" id="officerPosition" name="officerPosition" placeholder="Officer's Position" required>
+
+                <label for="department">Department/Agency:</label>
+                <input type="text" id="department" name="department" placeholder="Department or Agency Name" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Defendant Information</legend>
+
+                <label for="defendantName">Defendant Name:</label>
+                <input type="text" id="defendantName" name="defendantName" placeholder="Defendant's Full Name" required>
+
+                <label for="defendantAddress">Defendant Address:</label>
+                <input type="text" id="defendantAddress" name="defendantAddress" placeholder="Defendant's Address" required>
+
+                <label for="additionalInfo">Additional Information:</label>
+                <textarea id="additionalInfo" name="additionalInfo" placeholder="Any other relevant information"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>File Attachment</legend>
+
+                <label for="pdfLink">Google Drive PDF Link:</label>
+                <input type="url" id="pdfLink" name="pdfLink" placeholder="Paste the Google Drive link here" required>
+            </fieldset>
+
+            <button type="submit">Submit Request</button>
+        </form>
+
+        <section id="output">
+            <h2>Submitted Warrant Requests</h2>
+            <ul id="warrantList"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Judicial System</p>
+    </footer>
+
+    <script src="/dcourt/judicial-warrant-request/script.js"></script>
+</body>
+</html>
