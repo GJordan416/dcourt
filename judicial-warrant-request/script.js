@@ -14,7 +14,7 @@ document.getElementById('warrantForm').addEventListener('submit', async function
     };
 
     // Log to Discord
-    const webhookUrl = 'https://discord.com/api/webhooks/1320338031219310704/eTfx33AlkZOCA4evd0hfMg5FMLLJ-mm1fCt42sM_-Pw02uBiDYV6cntVNwC7zIyLIg4o'; // Replace with your webhook URL
+    const webhookUrl = 'https://discord.com/api/webhooks/1320571670272151633/uhfALqIwR-5wYdz9wczepYYvy_08sN6OMIxto7vTVdu1CUHYCf4D16clj4Bofaf8OUph'; // Replace with your webhook URL
     const discordPayload = {
         embeds: [
             {
