@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "John Doe",
+    "offense": "Theft",
+    "warrantDate": "2024-12-01",
+    "status": "Active"
+  },
+  {
+    "id": "2",
+    "name": "Jane Smith",
+    "offense": "Fraud",
+    "warrantDate": "2024-11-15",
+    "status": "Served"
+  }
+]
