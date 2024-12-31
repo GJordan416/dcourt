@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case Details">
+    <title>Case Details</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #00274d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .case-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .case-details div {
+            flex: 1 1 50%;
+            margin-bottom: 10px;
+        }
+        .case-details div strong {
+            color: #00509e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #00509e;
+            color: #fff;
+        }
+        table td a {
+            color: #00509e;
+            text-decoration: none;
+        }
+        footer {
+            background: #00274d;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Judiciary Case Details</h1>
+         <nav>
+            <ul>
+                <li><a href="https://gjordan416.github.io/dcourt/orders-opinions.html">Orders & Opinions</a></li>
+    </header>
+    <div class="container">
+        <section>
+            <h2>Case Information</h2>
+            <div class="case-details">
+                <div><strong>Case Number:</strong> 1230-CV-24002</div>
+                <div><strong>Docket:</strong> Civil Division</div>
+                <div><strong>Assigned Judge:</strong> Hon. Jordan Kingly (Reassigned)</div>
+                <div><strong>Clerk of Court:</strong> N/A</div>
+                <div><strong>Status:</strong> FILED</div>
+                <div><strong>Date Filed:</strong> December 30, 2024</div>
+            </div>
+        </section>
+        <section>
+            <h2>Parties Involved</h2>
+            <div class="case-details">
+                <div><strong>Plaintiff:</strong> Matteo Hall</div>
+                <div><strong>Defendant:</strong> Regina Mills</div>
+                <div><strong>Plaintiff's Lawyer:</strong> USDOJ/div>
+                <div><strong>Defendant's Lawyer:</strong> N/A</div>
+            </div>
+        </section>
+        <section>
+            <h2>Case Documents</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Type</th>
+                        <th>Date Added</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>Criminal Information</td>
+                        <td>PDF</td>
+                        <td>December 30, 2024</td>
+                        <td><a href="https://drive.google.com/file/d/17GAlsR4aiumOLWc-zCatQ1ahbcUntzK1/view" target="_blank">Download</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Other Important Details</h2>
+            <ul>
+                <li>Next Hearing Date: N/A</li>
+                <li>Hearing Location: Room 1, District Court</li>
+                <li>Type of Case: Civil</li>
+                <li>Case Priority: High</li>
+            </ul>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 United States District Court</p>
+    </footer>
+</body>
+</html>
